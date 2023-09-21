@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -34,16 +33,20 @@ const MovieDetails = () => {
   }, [id]);
 
   return (
-    <div className="movie-details">
+    <div className="pt-36 flex flex-wrap w-3/4 m-auto h-screen text-slate-200">
       {isLoading ? (
-        <div>Loading...</div>
+        <div className=" w-full flex justify-center items-center  ">
+          <div class="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+        </div>
       ) : isError ? (
         <div>Error: Failed to fetch movie details.</div>
       ) : !movie ? (
         <div>Movie not found.</div>
       ) : (
         <div>
-          <h2>{movie.title}</h2>
+          <h2 className="text-slate-100 text-3xl py-4 font-bold">
+            {movie.title}
+          </h2>
           <p>{movie.overview}</p>
           {/* Add more movie details as needed */}
         </div>
