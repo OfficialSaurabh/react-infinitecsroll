@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import axios from "axios";
 
 const MovieDetails = () => {
@@ -44,6 +46,9 @@ const MovieDetails = () => {
         <div>Movie not found.</div>
       ) : (
         <div>
+          <Link to={"/"} >
+          Back
+          </Link>
           <h2 className="text-slate-100 text-3xl py-4 font-bold">
             {movie.title}
           </h2>
