@@ -12,7 +12,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [noMoreData, setNoMoreData] = useState(false);
-  const [stuckOnPage, setStuckOnPage] = useState(null); 
+  const [stuckOnPage, setStuckOnPage] = useState(null);
   const bottomBoundaryRef = useRef(null);
   console.log(`"page": ${page}`);
   const fetchMovies = async () => {
@@ -54,11 +54,9 @@ function App() {
       !isError &&
       !noMoreData &&
       stuckOnPage === null
-    ) 
-    {
+    ) {
       setPage(prevPage => prevPage + 1);
     }
-    
   };
   useEffect(() => {
     fetchMovies();
@@ -68,17 +66,28 @@ function App() {
 
   return (
     <Router>
-      <div className="app">
-        <h1>Infinite Scrolling Demo</h1>
+      <div className=" bg-slate-900 min-h-screen ">
+        <h1 className=" top-0 z-10 fixed w-full text-center p-5 text-2xl font-bold tracking-widest text-slate-200 bg-slate-900 border-b-2 border-slate-500  shadow-lg shadow-slate-500/50  ">
+          ReactJs Infinite Scroll
+        </h1>
         <Routes>
           <Route path="/" element={<MovieList movies={movies} />} />
-          <Route path="/movie/:id" element={<MovieDetails />} /> 
+          <Route path="/movie/:id" element={<MovieDetails />} />
         </Routes>
         {/* <button onClick={changePage} >load more</button> */}
-        {isLoading && <div>Loading...</div>}
-        {isError && <div>Error loading data...</div>}
-        {noMoreData && <div>No more data to fetch.</div>}
-        {stuckOnPage !== null && <div>Fetching data got stuck on page {stuckOnPage}. Please try again later.</div>}
+        {isLoading && (
+          <div className=" w-full flex justify-center items-center  ">
+            <div class="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+          </div>
+        )}
+        {isError && <div className="text-slate-100 flex justify-center items-center  text-2xl" >Error loading data...</div>}
+        {noMoreData && <div className="text-slate-100 text-2xl">No more data to fetch.</div>}
+        {stuckOnPage !== null && (
+          <div className="text-slate-100 flex justify-center items-center  text-2xl">
+            Fetching data got stuck on page {stuckOnPage}. Please try again
+            later.
+          </div>
+        )}
         <div ref={bottomBoundaryRef} />
       </div>
     </Router>
