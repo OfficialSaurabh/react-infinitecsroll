@@ -1,24 +1,87 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import MovieList from "./components/MovieList";
+import MovieDetails from "./components/MovieDetails";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+const API_KEY = "c59c943576ee5ade1e6c794e05dce553"; // Replace with your TMDb API key
 
 function App() {
+  const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [noMoreData, setNoMoreData] = useState(false);
+  const [stuckOnPage, setStuckOnPage] = useState(null); 
+  const bottomBoundaryRef = useRef(null);
+  console.log(`"page": ${page}`);
+  const fetchMovies = async () => {
+    if (isLoading || isError || noMoreData) return;
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/discover/movie`,
+        {
+          params: {
+            api_key: API_KEY,
+            page: page,
+            sort_by: "popularity.desc",
+          },
+        }
+      );
+      const newMovies = response.data.results;
+      if (newMovies.length === 0) {
+        // If no new movies were fetched, set noMoreData to true
+        setNoMoreData(true);
+      } else {
+        setMovies(prevMovies => [...prevMovies, ...newMovies]);
+        // setPage((prevPage) => prevPage + 1);
+      }
+      setIsLoading(false);
+      setStuckOnPage(null);
+    } catch (error) {
+      setIsError(true);
+      setIsLoading(false);
+      setStuckOnPage(page);
+    }
+  };
+  const handleScroll = () => {
+    if (
+      bottomBoundaryRef.current &&
+      bottomBoundaryRef.current.getBoundingClientRect().top <=
+        window.innerHeight &&
+      !isLoading &&
+      !isError &&
+      !noMoreData &&
+      stuckOnPage === null
+    ) 
+    {
+      setPage(prevPage => prevPage + 1);
+    }
+    
+  };
+  useEffect(() => {
+    fetchMovies();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [page]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app">
+        <h1>Infinite Scrolling Demo</h1>
+        <Routes>
+          <Route path="/" element={<MovieList movies={movies} />} />
+          <Route path="/movie/:id" element={<MovieDetails />} /> 
+        </Routes>
+        {/* <button onClick={changePage} >load more</button> */}
+        {isLoading && <div>Loading...</div>}
+        {isError && <div>Error loading data...</div>}
+        {noMoreData && <div>No more data to fetch.</div>}
+        {stuckOnPage !== null && <div>Fetching data got stuck on page {stuckOnPage}. Please try again later.</div>}
+        <div ref={bottomBoundaryRef} />
+      </div>
+    </Router>
   );
 }
 
