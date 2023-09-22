@@ -30,7 +30,7 @@ function App() {
         }
       );
       const newMovies = response.data.results;
-      if (newMovies.length === 0) {
+      if (page === 500) {
         // If no new movies were fetched, set noMoreData to true
         setNoMoreData(true);
       } else {
@@ -49,7 +49,7 @@ function App() {
   
     const windowRelativeBottom = document.documentElement.getBoundingClientRect()
     .bottom;
-  if (windowRelativeBottom <= document.documentElement.clientHeight + 100)  {
+  if (windowRelativeBottom <= document.documentElement.clientHeight + 100 && page < 500)  {
     setPage(prevPage => prevPage + 1);
   }
   };
@@ -81,7 +81,7 @@ function App() {
           </div>
         )}
         {noMoreData && (
-          <div className="text-red-400 text-2xl">No more data to fetch.</div>
+          <div className="text-red-500 flex justify-center items-center text-2xl">No more movies left.</div>
         )}
         {stuckOnPage !== null && (
           <div className="text-red-400 flex justify-center items-center  text-2xl">
