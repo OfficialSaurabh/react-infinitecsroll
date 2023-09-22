@@ -81,20 +81,20 @@ function App() {
           </div>
         )}
         {isError && (
-          <div className="text-slate-100 flex justify-center items-center  text-2xl">
+          <div className="text-red-400 flex justify-center items-center  text-2xl">
             Error loading data...
           </div>
         )}
         {noMoreData && (
-          <div className="text-slate-100 text-2xl">No more data to fetch.</div>
+          <div className="text-red-400 text-2xl">No more data to fetch.</div>
         )}
         {stuckOnPage !== null && (
-          <div className="text-slate-100 flex justify-center items-center  text-2xl">
+          <div className="text-red-400 flex justify-center items-center  text-2xl">
             Fetching data got stuck on page {stuckOnPage}. Please try again
             later.
           </div>
         )}
-        <div ref={bottomBoundaryRef} />
+        <div ref={bottomBoundaryRef} style={{ height:"10vh"}} />
       </div>
     </Router>
   );
