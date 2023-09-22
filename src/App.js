@@ -94,7 +94,7 @@ function App() {
             later.
           </div>
         )}
-        <div ref={bottomBoundaryRef} style={{ height:"10vh"}} />
+        <div ref={bottomBoundaryRef}  />
       </div>
     </Router>
   );
