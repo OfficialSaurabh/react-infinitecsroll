@@ -27,7 +27,7 @@ const UserList = ({ movies }) => {
     //     </div>
     //   ))}
     // </div>
-    <div className=" flex flex-wrap justify-center gap-5 w-3/4 m-auto pt-36">
+    <div className=" pb-10 flex flex-wrap justify-center gap-5 w-3/4 m-auto pt-36">
       {movies.map(movie => (
         <div key={movie.index} className=" ">
           <div className="overflow-hidden w-52 rounded-xl relative transform hover:-translate-y-2 transition ease-in-out duration-500 shadow-lg hover:shadow-2xl movie-item text-white movie-card">
