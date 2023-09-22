@@ -17,7 +17,7 @@ const MovieDetails = () => {
           `https://api.themoviedb.org/3/movie/${id}`,
           {
             params: {
-              api_key: "c59c943576ee5ade1e6c794e05dce553", // Replace with your TMDb API key
+              api_key: "e49d68b55d487658fbdb337d20994be0", // Replace with your TMDb API key
             },
           }
         );
