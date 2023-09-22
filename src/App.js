@@ -4,7 +4,7 @@ import MovieList from "./components/MovieList";
 import MovieDetails from "./components/MovieDetails";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-const API_KEY = "c59c943576ee5ade1e6c794e05dce553"; // Replace with your TMDb API key
+const API_KEY = "e49d68b55d487658fbdb337d20994be0"; // Replace with your TMDb API key
 
 function App() {
   const [movies, setMovies] = useState([]);
