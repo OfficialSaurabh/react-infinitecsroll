@@ -35,7 +35,7 @@ const MovieDetails = () => {
   }, [id]);
 
   return (
-    <div className="pt-36 flex flex-wrap w-3/4 m-auto h-screen text-slate-200">
+    <div className="pt-36 flex flex-wrap w-3/4 m-auto h-screen text-gray-800">
       {isLoading ? (
         <div className=" w-full flex justify-center items-center  ">
           <div class="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
@@ -49,7 +49,7 @@ const MovieDetails = () => {
           <Link to={"/"} >
           Back
           </Link>
-          <h2 className="text-slate-100 text-3xl py-4 font-bold">
+          <h2 className=" text-3xl py-4 font-bold">
             {movie.title}
           </h2>
           <p>{movie.overview}</p>
