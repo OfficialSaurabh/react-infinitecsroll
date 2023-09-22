@@ -10,6 +10,8 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
+  console.log("movie details", movie);
+
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
@@ -17,7 +19,7 @@ const MovieDetails = () => {
           `https://api.themoviedb.org/3/movie/${id}`,
           {
             params: {
-              api_key: "c59c943576ee5ade1e6c794e05dce553", // Replace with your TMDb API key
+              api_key: "e49d68b55d487658fbdb337d20994be0", // Replace with your TMDb API key
             },
           }
         );
@@ -34,8 +36,10 @@ const MovieDetails = () => {
     fetchMovieDetails();
   }, [id]);
 
+  // console.log(movie);
+
   return (
-    <div className="pt-36 flex flex-wrap w-3/4 m-auto h-screen text-gray-800">
+    <div className="h-screen text-gray-800">
       {isLoading ? (
         <div className=" w-full flex justify-center items-center  ">
           <div class="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
@@ -45,15 +49,44 @@ const MovieDetails = () => {
       ) : !movie ? (
         <div>Movie not found.</div>
       ) : (
-        <div>
-          <Link to={"/"} >
-          Back
-          </Link>
-          <h2 className=" text-3xl py-4 font-bold">
-            {movie.title}
-          </h2>
-          <p>{movie.overview}</p>
-          {/* Add more movie details as needed */}
+        <div className="">
+          <div className=" ">
+            <div
+              className=" min-h-screen sm:py-5 px-2 md:py-8 items-center "
+              style={{
+                backgroundImage: `url(http://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
+
+                backgroundPosition: "center center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              <div className="bg-black bg-opacity-60 text-white absolute inset-0  flex flex-col items-center justify-end">
+                <div className="sm:w-3/4 w-full mx-auto px-2">
+                  <div className=" mb-28  space-y-5 ">
+                    <h1 className="text-4xl font-bold  ">{movie.title}</h1>
+                    <p className=" text-xl ">{movie.overview}</p>
+
+                    <div className="flex flex-wrap">
+                      {movie.genres.map(genre => (
+                        <span
+                          key={genre.id}
+                          className="bg-gray-300 text-gray-800 rounded-full px-2 py-1 m-1"
+                        >
+                          {genre.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 w-3/4 mx-auto">
+              <p className="text-xl font-bold">{movie.title}</p>
+              {/* Add more movie details as needed */}
+            </div>
+          </div>
         </div>
       )}
     </div>
