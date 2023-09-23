@@ -44,7 +44,7 @@ const MovieDetails = () => {
 
     fetchMovieDetails();
   }, [id]);
-
+ 
   return (
     <div className=" min-h-screen mt-16 text-gray-800">
       {isLoading ? (
@@ -58,12 +58,14 @@ const MovieDetails = () => {
       ) : (
         <div className="w-full flex flex-wrap justify-center items-center">
           <div className="relative object-cover">
-            <img
-              className="  "
-              src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-              alt={movie.title}
-            />
-            <div className="absolute hidden sm:block inset-0 z-10 top-0 bottom-0 bg-gradient-to-r from-black via-gray-700/50 to-transparent"></div>
+        
+              <img
+                className="w-full"
+                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                alt={movie.title}
+              />
+           
+            <div className="absolute  inset-0 z-10 top-0 bottom-0  sm:bg-gradient-to-r bg-gradient-to-t from-black via-gray-700/10 sm:via-gray-700/50 to-transparent"></div>
 
             <div className="absolute sm:flex z-10 sm:text-white text-gray-800 sm:top-0 sm:left-0 sm:w-1/2 sm:mx-20 sm:h-full  sm:justify-center sm:items-center">
               <div className="sm:block hidden ">
@@ -95,11 +97,11 @@ const MovieDetails = () => {
             </div>
           </div>
           <div className=" w-5/6 ">
-            <div className="block pb-10 sm:hidden ">
+            <div className="block pb-10 sm:hidden  ">
               <h1 className="sm:text-5xl md:text-3xl text-2xl font-black py-5 font-serif  ">
                 {movie.title}
               </h1>
-              <div className="space-y-5 ">
+              <div className="space-y-5 text-gray-600">
                 <p className=" text-lg font-semibold ">{movie.overview}</p>
                 <div className=" flex space-x-5 flex-wrap text-xl font-medium text-zinc-400  ">
                   <p className=" ">IMDb {movie.vote_average.toFixed(1)}</p>
