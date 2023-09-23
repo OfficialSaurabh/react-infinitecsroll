@@ -49,7 +49,7 @@ function App() {
   
     const windowRelativeBottom = document.documentElement.getBoundingClientRect()
     .bottom;
-  if (windowRelativeBottom <= document.documentElement.clientHeight + 100 && page < 500 )  {
+  if (windowRelativeBottom <= document.documentElement.clientHeight + 100 && page < 500 && window.location.pathname === '/' )  {
     setPage(prevPage => prevPage + 1);
   }
   };
