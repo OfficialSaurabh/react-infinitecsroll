@@ -27,10 +27,10 @@ const UserList = ({ movies }) => {
     //     </div>
     //   ))}
     // </div>
-    <div className=" pb-10 grid px-2 place-items-center grid-cols-2 xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 gap-4 w-full lg:w-3/4 m-auto  pt-36">
+    <div className=" pb-10 grid px-2 place-items-center grid-cols-2 xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 gap-4 lg:w-3/4 w-full m-auto  pt-36">
       {movies.map(movie => (
         <div key={movie.index} className=" ">
-          <div className="overflow-hidden w-44   2xl:w-52 rounded-xl relative transform hover:-translate-y-2 transition ease-in-out duration-500 shadow-lg hover:shadow-2xl movie-item text-white movie-card">
+          <div className="overflow-hidden w-44   2xl:w-52  rounded-xl relative transform hover:-translate-y-2 transition ease-in-out duration-500 shadow-lg hover:shadow-2xl movie-item text-white movie-card">
             <div className="absolute inset-0 z-10 transition duration-300 ease-in-out bg-gradient-to-t from-black via-gray-900/90 to-transparent"></div>
             <Link to={`/movie/${movie.id}`}>
               <div className="relative cursor-pointer group z-10 px-5 pb-5 space-y-6">
