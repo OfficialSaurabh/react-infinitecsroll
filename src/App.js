@@ -62,8 +62,8 @@ function App() {
   return (
     <Router>
       <div className=" b-10 bg-gray-100 min-h-screen ">
-        <h1 className=" top-0 z-30 fixed w-full text-center p-5 text-2xl font-bold tracking-widest text-gray-800 bg-white border-b-2 border-gray-500  shadow-lg shadow-gray-500/50  ">
-          ReactJs Infinite Scroll
+        <h1 className=" top-0 z-30 fixed w-full text-center p-3 text-2xl font-bold tracking-widest text-gray-800 bg-white border-b-2 border-gray-500  shadow-lg shadow-gray-500/50  ">
+        EndlessMovies
         </h1>
         <Routes>
           <Route path="/" element={<MovieList movies={movies} />} />

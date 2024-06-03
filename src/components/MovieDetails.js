@@ -46,7 +46,7 @@ const MovieDetails = () => {
   }, [id]);
  
   return (
-    <div className=" min-h-screen mt-16 text-gray-800">
+    <div className=" min-h-screen text-gray-800">
       {isLoading ? (
         <div className=" w-full py-16 flex justify-center items-center  ">
           <div class="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
